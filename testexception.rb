@@ -2,23 +2,11 @@ require 'java'
 
 $CLASSPATH << 'target/classes'
 
-java_import 'example.AbstractJobFactory'
-java_import 'example.BackgroundJob'
-java_import 'example.Job'
+java_import 'example.Foo'
 
-class RubyJob < Job
-  def doJob
-    puts "doing a job"
-  end
-end
-class JobFactory < AbstractJobFactory
-  def createJob
-    return RubyJob.new
+class Bar < Foo
+  def bar
   end
 end
 
-e = BackgroundJob.new
-e.start
-factory = JobFactory.new
-e.register(factory)
-e.shutdown
+Foo.foo(Bar.new)
